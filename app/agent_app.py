@@ -2,6 +2,10 @@ import streamlit as st
 import os
 import pandas as pd  # Toegevoegd voor het lezen van de portfolio tabel
 import time  # Voor retry mechanisme
+# --- SQLite fix voor Streamlit Cloud ----------------------------------------
+import sys, pysqlite3               # vervangt oude sqlite op Linux
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+# ---------------------------------------------------------------------------
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain.tools.retriever import create_retriever_tool
 from langchain_community.agent_toolkits import SQLDatabaseToolkit
